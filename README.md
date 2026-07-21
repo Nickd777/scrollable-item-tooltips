@@ -10,7 +10,8 @@ Install Fabric Loader for `26.1.2`, then drop `scrollabletooltips-1.0.0.jar` int
 ## Config
 
 Auto-created at `.minecraft/config/scrollabletooltips.json`: `scrollSpeed`, `invertScroll`,
-`showScrollbar`, `edgeMargin`, `enabled`.
+`showScrollbar`, `edgeMargin`, `enabled`. With [Mod Menu](https://modrinth.com/mod/modmenu)
+installed (optional), you can edit these in-game via its Configure button.
 
 ## Build
 

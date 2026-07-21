@@ -65,4 +65,8 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_$projectName" }
 	}
+
+	// Compile-time-only stubs of Mod Menu's API: kept out of the shipped jar so Mod Menu stays a
+	// purely optional runtime dependency (the real classes come from the user's Mod Menu install).
+	exclude "com/terraformersmc/**"
 }
