@@ -47,6 +47,15 @@ public class GuiGraphicsExtractorMixin {
 	@Unique
 	private static final int BACKGROUND_PADDING = 3;
 
+	/**
+	 * Extra breathing room (in GUI pixels) kept between the tooltip's colored border and the clip
+	 * window's top/bottom edge. Without this the 1px border sits exactly on the scissor boundary at
+	 * the scroll extremes and gets shaved off. The scroll range is extended by the same amount so
+	 * the whole tooltip is still reachable.
+	 */
+	@Unique
+	private static final int BORDER_INSET = 2;
+
 	@WrapMethod(method = "tooltip")
 	private void scrollabletooltips$wrapTooltip(Font font, List<ClientTooltipComponent> lines, int xo, int yo,
 			ClientTooltipPositioner positioner, Identifier style, Operation<Void> original) {
@@ -97,11 +106,15 @@ public class GuiGraphicsExtractorMixin {
 
 		// Full rendered extent including background padding above and below.
 		int fullExtent = contentHeight + BACKGROUND_PADDING * 2;
-		double maxScroll = Math.max(0, fullExtent - windowHeight);
+		// Pin/scroll the content inside a slightly inset region so the colored border never lands on
+		// the scissor edge (which would clip a 1px line at the very top/bottom).
+		int contentTop = topMargin + BORDER_INSET;
+		int contentWindow = Math.max(1, windowHeight - BORDER_INSET * 2);
+		double maxScroll = Math.max(0, fullExtent - contentWindow);
 		double offset = TooltipScrollState.onOverflowRender(signature, maxScroll);
 
-		// Shift so the (padded) top sits at the top margin, then pan down by the scroll offset.
-		float translateY = (topMargin - (predictedTop - BACKGROUND_PADDING)) - (float) offset;
+		// Shift so the (padded) top sits at the inset top, then pan down by the scroll offset.
+		float translateY = (contentTop - (predictedTop - BACKGROUND_PADDING)) - (float) offset;
 
 		self.pose().pushMatrix();
 		// Clip vertically to the usable window. enableScissor bakes in the current pose, so it must
