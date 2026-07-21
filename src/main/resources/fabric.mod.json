@@ -2,15 +2,15 @@
 	"schemaVersion": 1,
 	"id": "scrollabletooltips",
 	"version": "${version}",
-	"name": "Scrollable Tooltips",
+	"name": "Scrollable Item Tooltips",
 	"description": "Scroll long item tooltips (lore, enchantments, shulker contents, modded descriptions) with the mouse wheel instead of letting them run off-screen. 100% client-side.",
 	"authors": [
 		"nick7"
 	],
 	"contact": {
-		"homepage": "https://github.com/nick7/scrollable-tooltips",
-		"sources": "https://github.com/nick7/scrollable-tooltips",
-		"issues": "https://github.com/nick7/scrollable-tooltips/issues"
+		"homepage": "https://github.com/nick7/scrollable-item-tooltips",
+		"sources": "https://github.com/nick7/scrollable-item-tooltips",
+		"issues": "https://github.com/nick7/scrollable-item-tooltips/issues"
 	},
 	"license": "MIT",
 

@@ -1,4 +1,4 @@
-# Scrollable Tooltips
+# Scrollable Item Tooltips
 
 A tiny **client-side** Fabric mod for **Minecraft 26.1.2** that lets you **scroll long item tooltips**
 with the mouse wheel instead of letting them run off the top/bottom of the screen.
@@ -116,7 +116,7 @@ vanilla on purpose. If it seems inactive, work through this:
 1. **Confirm the mod is actually loaded.** Look in your latest log
    (`.minecraft/logs/latest.log`) for:
    ```
-   [Scrollable Tooltips] Client init complete (client-only, MC 26.1.2). ...
+   [Scrollable Item Tooltips] Client init complete (client-only, MC 26.1.2). ...
    ```
    If that line is missing, the mod didn't load. The #1 cause is a **Minecraft version
    mismatch** — this build only runs on **26.1.2**. `26.1` is unobfuscated, so a jar built for
@@ -126,7 +126,7 @@ vanilla on purpose. If it seems inactive, work through this:
 2. **Confirm tooltips are being intercepted.** Set `"debugLogging": true` in the config, restart,
    then hover items. You should see lines like:
    ```
-   [Scrollable Tooltips] tooltip intercepted: lines=31, contentHeight=312px, windowHeight=272px, willScroll=true
+   [Scrollable Item Tooltips] tooltip intercepted: lines=31, contentHeight=312px, windowHeight=272px, willScroll=true
    ```
    - `willScroll=false` just means that tooltip fit on your screen — try a taller one.
    - If you see **no** `tooltip intercepted` lines at all while hovering, the mod isn't being

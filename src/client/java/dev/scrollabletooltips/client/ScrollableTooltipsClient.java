@@ -24,7 +24,7 @@ public class ScrollableTooltipsClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		// Load (and create if missing) the config up-front.
 		ScrollableTooltipsConfig.load();
-		LOGGER.info("[Scrollable Tooltips] Client init complete (client-only, MC 26.1.2). scrollSpeed={}, edgeMargin={}, debugLogging={}",
+		LOGGER.info("[Scrollable Item Tooltips] Client init complete (client-only, MC 26.1.2). scrollSpeed={}, edgeMargin={}, debugLogging={}",
 				ScrollableTooltipsConfig.get().scrollSpeed, ScrollableTooltipsConfig.get().edgeMargin,
 				ScrollableTooltipsConfig.get().debugLogging);
 	}
@@ -36,7 +36,7 @@ public class ScrollableTooltipsClient implements ClientModInitializer {
 			return;
 		}
 		lastDebugTooltipLog = now;
-		LOGGER.info("[Scrollable Tooltips] tooltip intercepted: lines={}, contentHeight={}px, windowHeight={}px, willScroll={}",
+		LOGGER.info("[Scrollable Item Tooltips] tooltip intercepted: lines={}, contentHeight={}px, windowHeight={}px, willScroll={}",
 				lines, contentHeight, windowHeight, contentHeight > windowHeight);
 	}
 }
