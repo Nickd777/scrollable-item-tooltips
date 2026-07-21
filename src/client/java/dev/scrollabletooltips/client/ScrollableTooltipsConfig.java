@@ -39,7 +39,7 @@ public class ScrollableTooltipsConfig {
 	 * Lower = the tooltip fills more of the screen. Tooltips shorter than the screen are never
 	 * scrolled and keep their normal near-cursor look.
 	 */
-	public int edgeMargin = 4;
+	public int edgeMargin = 2;
 
 	/**
 	 * When true, logs (throttled) every intercepted tooltip's measured height and whether it will
