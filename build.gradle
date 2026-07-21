@@ -1,0 +1,68 @@
+plugins {
+	// Minecraft 26.1+ is unobfuscated and ships with Mojang's official names, so we use the
+	// new non-remapping Loom plugin. There is no Yarn/intermediary remap step anymore.
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Loom adds the Minecraft + Fabric maven repositories automatically.
+	// This mod intentionally has NO third-party mod dependencies.
+}
+
+loom {
+	// Keep client-only rendering/input code in its own source set (src/client/java).
+	// This guarantees none of our classes are ever loaded on a dedicated server.
+	splitEnvironmentSourceSets()
+
+	mods {
+		"scrollabletooltips" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// NOTE: We deliberately do NOT depend on Fabric API. All hooks are plain Mixins into
+	// vanilla client classes, and config uses Gson (bundled with Minecraft). This keeps the
+	// mod lightweight and avoids any hard runtime dependency.
+}
+
+processResources {
+	def props = ["version": project.version]
+	inputs.properties props
+
+	filesMatching("fabric.mod.json") {
+		expand props
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName" }
+	}
+}
