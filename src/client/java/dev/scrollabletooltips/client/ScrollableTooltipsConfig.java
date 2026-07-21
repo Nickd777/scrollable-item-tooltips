@@ -36,9 +36,10 @@ public class ScrollableTooltipsConfig {
 
 	/**
 	 * Margin (in GUI pixels) kept between a scrollable (full-screen) tooltip and the screen edges.
-	 * Tooltips shorter than the screen are never scrolled and keep their normal near-cursor look.
+	 * Lower = the tooltip fills more of the screen. Tooltips shorter than the screen are never
+	 * scrolled and keep their normal near-cursor look.
 	 */
-	public int edgeMargin = 8;
+	public int edgeMargin = 4;
 
 	/**
 	 * When true, logs (throttled) every intercepted tooltip's measured height and whether it will
